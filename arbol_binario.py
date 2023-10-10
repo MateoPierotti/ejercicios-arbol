@@ -424,3 +424,16 @@ class BinaryTree:
                 __inorden(root.right)
 
         __inorden(self.root)
+
+    def inorden_ranking(self, ranking):
+        def __inorden_ranking(root, ranking):
+            if root is not None:
+                __inorden_ranking(root.left, ranking)
+                if root.other_values is not None:
+                    if root.other_values not in ranking:
+                        ranking[root.other_values] = 1
+                    else:
+                        ranking[root.other_values] += 1
+                __inorden_ranking(root.right, ranking)
+
+        __inorden_ranking(self.root, ranking)
